@@ -4,7 +4,11 @@ const capitalizeFirstLetter = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 const validationErrorsReducer = ({phase1}) => (state = defaultState, action) => {
-    if (action.type.indexOf("_FAILED") !== -1){
+    if (
+        action.type.indexOf("_FAILED") !== -1 ||
+        action.type.indexOf("_REQUEST") !== -1 ||
+        action.type.indexOf("_SUCCESS") !== -1
+    ){
         let phase1_key = Object.keys(phase1).find(key => {
             if (action.type.indexOf(key) !== -1) {
                 return true;
@@ -14,6 +18,8 @@ const validationErrorsReducer = ({phase1}) => (state = defaultState, action) => 
         let reducer_key_sub_key = 
         action.type
             .replace("_FAILED","")
+            .replace("_SUCCESS","")
+            .replace("_REQUEST","")
             .split("_")
             .map((x,i) => i === 0 ? x.toLowerCase() : capitalizeFirstLetter(x.toLowerCase()))
             .join("")
@@ -28,10 +34,26 @@ const validationErrorsReducer = ({phase1}) => (state = defaultState, action) => 
             //   list: nextState.error.response.data.errors,
             //   message: nextState.error.response.data.message 
             // }
+            let list;
+            let inner;
+            if (action.error.response.data.errors){
+                if (action.error.response.data.errors.length){
+                    list = action.error.response.data.errors
+                } else inner = action.error.response.data.errors
+                if (!list){
+                    list = action.error.response.data.errors.map(x => x.message)
+                }
+            }
             state = { ...state, [reducer_key_sub_key]: {
                 _reducer_key: reducer_key,  
-                list: action.error.response.data.errors,
+                list, inner,
                 message: action.error.response.data.message 
+            }}
+        } else {
+            state = { ...state, [reducer_key_sub_key]: {
+                _reducer_key: reducer_key,  
+                list: [], inner: [],
+                message: undefined 
             }}
         }
     }

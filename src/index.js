@@ -7,9 +7,12 @@ import reportWebVitals from './reportWebVitals';
 import store from "./store";
 
 global.get_token = () => {
-  let token = localStorage.getItem("solyd_floors:token");
+  let token = localStorage.getItem("solyd_floors_business:token");
   return token 
 }
+global.string_to_qs = params => Object.keys(params)
+  .map(key => `${key}=${params[key]}`)
+  .join('&');
 
 ReactDOM.render(
   <React.StrictMode>

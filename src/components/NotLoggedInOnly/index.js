@@ -15,7 +15,7 @@ function NotLoggedInOnly(props){
 let mapStateToProps = state => {
     return { 
         loading: state.auth.getAuth && state.auth.getAuth.loading,
-        loggedIn: Boolean(state.auth.user) && Boolean(state.auth.user.Business) 
+        loggedIn: Boolean(state.auth.business) && Boolean(state.auth.business) 
     }
 }
 

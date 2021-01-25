@@ -2,7 +2,7 @@ import store from "../store"
 
 const defaultState = {
     loggedIn: false,
-    user: undefined,
+    business: undefined,
     getAuth: { loading: true },
     postAuth: { }
 } 
@@ -10,32 +10,32 @@ const defaultState = {
 const authReducer = (state = defaultState, action) => {
     switch(action.type) {
         case "POST_INSTALLERS_SUCCESS":
-            state.user.Installer = action.payload.data.installer
-            return { ...state, auth: { ...state, user: { ...state.user } } }
+            state.business.Installer = action.payload.data.installer
+            return { ...state, auth: { ...state, business: { ...state.business } } }
         case "GET_AUTH_REQUEST": 
             return { ...state, getAuth: { loading: true } }
         case "GET_AUTH_SUCCESS":
-            if (action.payload.data.user.isGuest) {
+            if (action.payload.data.business.isGuest) {
                 localStorage.setItem("solyd_floors:guest_token", action.payload.data.token)
             } else {
-                localStorage.setItem("solyd_floors:token", action.payload.data.token)
+                localStorage.setItem("solyd_floors_business:token", action.payload.data.token)
             }
-            return { ...state, getAuth: { loading: false, data: action.payload }, user: action.payload.data.user, loggedIn: !action.payload.data.user.isGuest }
+            return { ...state, getAuth: { loading: false, data: action.payload }, business: action.payload.data.business, loggedIn: !action.payload.data.business.isGuest }
         case "GET_AUTH_FAILED":
             return { ...state, getAuth: { loading: false, error: action.error } }
         case "POST_AUTH_REQUEST": 
             return { ...state, postAuth: { loading: true } }
         case "POST_AUTH_SUCCESS":
-            localStorage.setItem("solyd_floors:token", action.payload.data.token)
-            return { ...state, postAuth: { loading: false, data: action.payload }, user: action.payload.data.user, loggedIn: true }
+            localStorage.setItem("solyd_floors_business:token", action.payload.data.token)
+            return { ...state, postAuth: { loading: false, data: action.payload }, business: action.payload.data.business, loggedIn: true }
         case "POST_AUTH_FAILED":
             return { ...state, postAuth: { loading: false, error: action.error } }
-        case "POST_USERS_SUCCESS":
-            localStorage.setItem("solyd_floors:token", action.payload.data.token)
-            return { ...state, user: action.payload.data.user, loggedIn: true }
+        case "POST_businessS_SUCCESS":
+            localStorage.setItem("solyd_floors_business:token", action.payload.data.token)
+            return { ...state, business: action.payload.data.business, loggedIn: true }
         case "LOGOUT":
-            localStorage.removeItem("solyd_floors:token")
-            return { ...state, loggedIn: false, user: undefined }
+            localStorage.removeItem("solyd_floors_business:token")
+            return { ...state, loggedIn: false, business: undefined }
         default:
             return state;
     }

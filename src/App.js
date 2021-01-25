@@ -7,6 +7,7 @@ import { getAuth, logout } from "./sagas/components/auth/auth-saga";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MainPanel from "./components/MainPanel";
 
 class App extends React.Component {
   componentDidMount(){
@@ -25,14 +26,18 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <ToastContainer/>
-        <Routes/>
+        {
+          this.props.withPanel 
+          ? <MainPanel><Routes/></MainPanel>
+          : <Routes/>
+        }
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { exampleValue: state.exampleValue }
+  return { withPanel: state.ui.withPanel }
 }
 
 export default compose(
