@@ -18,6 +18,7 @@ const defaultState = {
         loading: false,
         error: undefined
     },
+    singleOrderRequests: {},
     loading: false,
     error: undefined
 } 
@@ -123,6 +124,53 @@ const meReducer = (state = defaultState, action) => {
                     cart: newCart,
                     cachedCart: newCart
                 } 
+            }
+
+
+        case "GET_SINGLE_ORDER_REQUEST":
+            return {
+                ...state,
+                singleOrderRequests: {
+                    ...(
+                        Object.keys(state.singleOrderRequests).filter(x => x != action.pk)
+                            .map(key => state.singleOrderRequests[key])
+                    ),
+                    [action.pk]: {
+                        loading: true,
+                        error: false,
+                        data: undefined
+                    }
+                }
+            }
+        case "GET_SINGLE_ORDER_FAILED":
+            return {
+                ...state,
+                singleOrderRequests: {
+                    ...(
+                        Object.keys(state.singleOrderRequests).filter(x => x != action.pk)
+                            .map(key => state.singleOrderRequests[key])
+                    ),
+                    [action.pk]: {
+                        loading: false,
+                        error: action.error,
+                        data: undefined
+                    }
+                }
+            }
+        case "GET_SINGLE_ORDER_SUCCESS":
+            return {
+                ...state,
+                singleOrderRequests: {
+                    ...(
+                        Object.keys(state.singleOrderRequests).filter(x => x != action.pk)
+                            .map(key => state.singleOrderRequests[key])
+                    ),
+                    [action.pk]: {
+                        loading: false,
+                        error: false,
+                        data: action.payload.data.order
+                    }
+                }
             }
 
         default:

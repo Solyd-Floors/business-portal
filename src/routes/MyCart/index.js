@@ -71,7 +71,7 @@ class MyCart extends React.Component {
     }
     checkout = async () => {
         let data = await axios.post("/me/cart/checkout");
-        console.log({data})
+        this.props.history.push("/orders/" + data.data.data.order.id)
         
     }
     render(){

@@ -13,6 +13,19 @@ class Orders extends React.Component {
     componentDidMount(){
         this.props.getOrders()
     }
+    getBadgeType = order => {
+        let badge_type;
+        if (order.status === "WAITING_CONFIRMATION"){
+            badge_type = "info"
+        } else if (order.status === "CANCELED"){
+            badge_type = "danger"
+        } else if (order.status === "DELIVERED"){
+            badge_type = "success"
+        } else if (order.status === "SHIPPING"){
+            badge_type = "warning"
+        }
+        return badge_type;
+    }
     render(){
         return (
             <div className="card">
@@ -42,7 +55,11 @@ class Orders extends React.Component {
                                 <td>{order.Invoice.last_four_digits}</td>
                                 <td>{order.quantity}</td>
                                 <td>${order.Invoice.price}</td>
-                                <td>{order.status}</td>
+                                <td>
+                                    <label style={{marginLeft: 10}} class={`badge badge-${this.getBadgeType(order)}`}>
+                                        {order.status}
+                                    </label>
+                                </td>
                                 <td>
                                     <Link to={`/orders/${order.id}`}>
                                         <button type="button" class="btn btn-primary">More</button>

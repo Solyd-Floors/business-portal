@@ -16,6 +16,7 @@ let only_logged_in = [
     { path: "/ship_to_addresses/:ship_to_address_id(\\d+)", Component: lazy(() => import('./SingleShipToAddress')) },
     { path: "/employees", Component: lazy(() => import('./Employees')) },
     { path: "/orders", Component: lazy(() => import('./Orders')) },
+    { path: "/orders/:order_id", Component: lazy(() => import('./SingleOrder')) },
     { path: "/billing", Component: lazy(() => import('./Billing')) },
     { path: "/invoices", Component: lazy(() => import('./Invoices')) },
     { path: "/employees/create", Component: lazy(() => import('./CreateEmployee')) },

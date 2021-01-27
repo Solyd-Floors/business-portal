@@ -85,8 +85,24 @@ export function* discardCartSaga({ onSuccess, onStart,  onError }) {
     }
 }
 
+export const getSingleOrder = pk => ({ type: "GET_SINGLE_ORDER", pk })
+export const getSingleOrderRequest = (pk) => ({ type: "GET_SINGLE_ORDER_REQUEST", pk })
+export const getSingleOrderSuccess = (pk,payload) => ({ type: "GET_SINGLE_ORDER_SUCCESS", payload, pk })
+export const getSingleOrderFailed = (pk,error) => ({ type: "GET_SINGLE_ORDER_FAILED", error, pk })
+
+export function* getSingleOrderSaga(params) {
+    yield put(getSingleOrderRequest(params.pk))
+    try {
+        let { data: payload } = yield call(axios,`/me/orders/${params.pk}`)
+        yield put(getSingleOrderSuccess(params.pk,payload))
+    } catch(err){
+        yield put(getSingleOrderFailed(params.pk,err))
+    }
+}
+
 export default function* meSageWatcher() {
     yield takeEvery("GET_MY_CART", getMyCartSaga)
+    yield takeEvery("GET_SINGLE_ORDER", getSingleOrderSaga)
     yield takeEvery("REMOVE_FROM_CART", removeFromCartSaga)
     yield takeEvery("ADD_FLOOR_BOXES_TO_CART", addFloorBoxesToCartSaga)
     yield takeEvery("DISCARD_CART", discardCartSaga)
