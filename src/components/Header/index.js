@@ -40,107 +40,20 @@ class Header extends React.Component {
                   </ul>
                   <ul className="navbar-nav navbar-nav-right">
                     <li className="nav-item dropdown">
-                      <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                      {/* <Link to="/cart" className="nav-link count-indicator dropdown-toggle">
                         <div className="boxed-item">
-                          <i className="icon-bell mx-0" />
+                          Cart
                         </div>
-                      </a>
-                      <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                        <a className="dropdown-item">
-                          <p className="mb-0 font-weight-normal float-left">You have 4 new notifications
-                          </p>
-                          <span className="badge badge-pill badge-warning float-right">View all</span>
-                        </a>
-                        <div className="dropdown-divider" />
-                        <a className="dropdown-item preview-item">
-                          <div className="preview-thumbnail">
-                            <div className="preview-icon bg-success">
-                              <i className="mdi mdi-information mx-0" />
-                            </div>
-                          </div>
-                          <div className="preview-item-content">
-                            <h6 className="preview-subject font-weight-medium">Application Error</h6>
-                            <p className="font-weight-light small-text mb-0">
-                              Just now
-                            </p>
-                          </div>
-                        </a>
-                        <div className="dropdown-divider" />
-                        <a className="dropdown-item preview-item">
-                          <div className="preview-thumbnail">
-                            <div className="preview-icon bg-warning">
-                              <i className="mdi mdi-settings mx-0" />
-                            </div>
-                          </div>
-                          <div className="preview-item-content">
-                            <h6 className="preview-subject font-weight-medium">Settings</h6>
-                            <p className="font-weight-light small-text mb-0">
-                              Private message
-                            </p>
-                          </div>
-                        </a>
-                        <div className="dropdown-divider" />
-                        <a className="dropdown-item preview-item">
-                          <div className="preview-thumbnail">
-                            <div className="preview-icon bg-info">
-                              <i className="mdi mdi-account-box mx-0" />
-                            </div>
-                          </div>
-                          <div className="preview-item-content">
-                            <h6 className="preview-subject font-weight-medium">New user registration</h6>
-                            <p className="font-weight-light small-text mb-0">
-                              2 days ago
-                            </p>
-                          </div>
-                        </a>
-                      </div>
+                      </Link> */}
                     </li>
+                  </ul>
+                  <ul className="navbar-nav navbar-nav-right">
                     <li className="nav-item dropdown">
-                      <a className="nav-link count-indicator dropdown-toggle" id="mailDropdown" href="#" data-toggle="dropdown">
+                    <Link to="/cart" className="nav-link count-indicator dropdown-toggle">
                         <div className="boxed-item">
-                          <i className="icon-mail mx-0" />
-                          <span className="count" />
+                          Go to cart
                         </div>
-                      </a>
-                      <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="mailDropdown">
-                        <p className="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-                        <a className="dropdown-item preview-item">
-                          <div className="preview-thumbnail">
-                            <img src="../../images/faces/face4.jpg" alt="image" className="profile-pic" />
-                          </div>
-                          <div className="preview-item-content flex-grow">
-                            <h6 className="preview-subject ellipsis font-weight-normal">David Grey
-                            </h6>
-                            <p className="font-weight-light small-text text-muted mb-0">
-                              The meeting is cancelled
-                            </p>
-                          </div>
-                        </a>
-                        <a className="dropdown-item preview-item">
-                          <div className="preview-thumbnail">
-                            <img src="../../images/faces/face2.jpg" alt="image" className="profile-pic" />
-                          </div>
-                          <div className="preview-item-content flex-grow">
-                            <h6 className="preview-subject ellipsis font-weight-normal">Tim Cook
-                            </h6>
-                            <p className="font-weight-light small-text text-muted mb-0">
-                              New product launch
-                            </p>
-                          </div>
-                        </a>
-                        <a className="dropdown-item preview-item">
-                          <div className="preview-thumbnail">
-                            <img src="../../images/faces/face3.jpg" alt="image" className="profile-pic" />
-                          </div>
-                          <div className="preview-item-content flex-grow">
-                            <h6 className="preview-subject ellipsis font-weight-normal"> Johnson
-                            </h6>
-                            <p className="font-weight-light small-text text-muted mb-0">
-                              Upcoming board meeting
-                            </p>
-                          </div>
-                        </a>
-                      </div>
+                      </Link>
                     </li>
                     {/* <li className="nav-item dropdown  d-none d-lg-block">
                       <a className="nav-link language-dropdown" id="languageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -156,7 +69,9 @@ class Header extends React.Component {
                             e.preventDefault()
                             this.setState({ profile_dropdown_opened: !this.state.profile_dropdown_opened })
                       }} className="nav-link language-dropdown" id="userDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <img src="../../images/faces/face1.jpg" className="user-icon" />
+                        <img style={{
+                          borderRadius: "100%"
+                        }} src="https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" className="user-icon" />
                       </a>
                       <div className={`dropdown-menu navbar-dropdown ${this.state.profile_dropdown_opened ? "show" :""}`} aria-labelledby="userDropdown">
                         <Link to="/my_account" className="dropdown-item" href="#">  <i className="mdi mdi-account-outline" /> My Account </Link>

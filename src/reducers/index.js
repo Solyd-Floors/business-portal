@@ -5,6 +5,7 @@ import getValidationErrorsReducer from "./validationErrors";
 import myBusinessReducer from "./my-business"
 import floorsReducer from "./floors"
 import uiReducer from "./ui"
+import meReducer from "./me"
 
 const validationErrorsReducer = getValidationErrorsReducer(
     {
@@ -13,6 +14,7 @@ const validationErrorsReducer = getValidationErrorsReducer(
 )
 
 export default combineReducers({
+    me: meReducer,
     auth: authReducer,
     myBusiness: myBusinessReducer,
     floors: floorsReducer,

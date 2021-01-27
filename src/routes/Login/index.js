@@ -32,18 +32,20 @@ class _Login extends React.Component {
                 <div className="row w-100">
                   <div className="col-lg-4 mx-auto">
                     <div className="auth-form-light text-left p-5">
-                    <ValidationErrors errors={this.props.validationErrors}>
-                        <div className="alert alert-danger">
-                            Email or password is incorrect. Please try again.
+                      <center>
+                        <div className="">
+                          <img src="./logo.svg" alt="logo" />
                         </div>
-                    </ValidationErrors>
 
-                      <div className="brand-logo">
-                        <img src="../../images/logo-dark.svg" alt="logo" />
-                      </div>
                       <h4>Hello! let's get started</h4>
                       <h6 className="font-weight-light">Sign in to continue.</h6>
                       <form onSubmit={this.onSubmit} className="pt-3">
+                      <ValidationErrors errors={this.props.validationErrors}>
+                        <div className="alert alert-danger">
+                            Email or password is incorrect. Please try again.
+                        </div>
+                      </ValidationErrors>
+
                         <div className="form-group">
                           <input value={this.state.email} onChange={this.onChange("email")} type="email" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="E-mail" />
                         </div>
@@ -54,12 +56,11 @@ class _Login extends React.Component {
                           <button type="submit" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                         </div>
                         <div className="my-2 d-flex justify-content-between align-items-center">
-                          <div className="form-check">
+                          {/* <div className="form-check">
                             <label className="form-check-label text-muted">
                               <input type="checkbox" className="form-check-input" />
-                              Keep me signed in
                             </label>
-                          </div>
+                          </div> */}
                           <a href="#" className="auth-link text-black">Forgot password?</a>
                         </div>
                         {/* <div className="mb-2">
@@ -71,6 +72,7 @@ class _Login extends React.Component {
                           Don't have an account? <Link to="/contact_us" href="register.html" className="text-primary">Contact Us</Link>
                         </div>
                       </form>
+                      </center>
                     </div>
                   </div>
                 </div>

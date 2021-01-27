@@ -1,5 +1,7 @@
 import React from "react";
-import MainPanel from "../../components/MainPanel";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { getOrders } from "../../sagas/components/my-business/my-business-saga";
 
 class Orders extends React.Component {
     constructor(props){
@@ -8,9 +10,61 @@ class Orders extends React.Component {
 
         }
     }
+    componentDidMount(){
+        this.props.getOrders()
+    }
     render(){
-        return "ToDo"
+        return (
+            <div className="card">
+            <div className="card-body">
+            <div className="d-sm-flex align-items-start justify-content-between mb-4">
+                <div>
+                <h4 className="card-title mb-1">Orders</h4>
+                </div>
+            </div>
+            <div className="table-responsive">
+                <table className="table table-striped">
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Card last digits</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.props.orders.map(order => (
+                            <tr>
+                                <td className="py-1">{order.id}</td>
+                                <td>{order.Invoice.last_four_digits}</td>
+                                <td>{order.quantity}</td>
+                                <td>${order.Invoice.price}</td>
+                                <td>{order.status}</td>
+                                <td>
+                                    <Link to={`/orders/${order.id}`}>
+                                        <button type="button" class="btn btn-primary">More</button>
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))
+                    }
+
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+
+        )
     }
 }
 
-export default Orders;
+
+const mapStateToProps = state => {
+    let orders = state.myBusiness.orders.allIds.map(x => state.myBusiness.orders.byIds[x])
+    return { ...state.myBusiness.orders, orders }
+}
+export default connect(mapStateToProps, { getOrders })(Orders);
