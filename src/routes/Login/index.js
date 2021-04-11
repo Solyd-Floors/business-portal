@@ -39,6 +39,12 @@ class _Login extends React.Component {
 
                       <h4>Hello! let's get started</h4>
                       <h6 className="font-weight-light">Sign in to continue.</h6>
+                      <button className="btn btn-primary" style={{marginLeft: 5}}>
+                        dasads
+                      </button>
+                      <button className="btn btn-primary" style={{marginLeft: 5}}>
+                        dasads
+                      </button>
                       <form onSubmit={this.onSubmit} className="pt-3">
                       <ValidationErrors errors={this.props.validationErrors}>
                         <div className="alert alert-danger">

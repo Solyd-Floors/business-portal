@@ -8,6 +8,7 @@ const E404 = lazy(() => import('./E404'))
 
 let only_logged_in = [
     { path: "/", Component: lazy(() => import('./Dashboard')) },
+    { path: "/my_account", Component: lazy(() => import('./MyAccount')) },
     { path: "/cart", Component: lazy(() => import('./MyCart')) },
     { path: "/floors", Component: lazy(() => import('./Floors')) },
     { path: "/floors/:floor_id(\\d+)", Component: lazy(() => import('./SingleFloor')) },

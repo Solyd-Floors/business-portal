@@ -137,7 +137,6 @@ class SingleFloor extends React.Component {
                   <h5 className="mt-0">{floor.name}</h5>
                   <p>{floor.description}</p>
                   <p>Price: <h6 style={{ display: "inline"}}>${global.prettifyPrice(price)}</h6></p>
-                  <p>Brand: {floor.Brand.name}</p>
                   <p>Type: {floor.FloorType.name}</p>
                     {
                         this.getFloorMilTypesOptionsJSX({
