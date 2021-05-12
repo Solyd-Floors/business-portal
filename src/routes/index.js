@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import LoggedInOnly from "../components/LoggedInOnly";
 import NotLoggedInOnly from "../components/NotLoggedInOnly";
 import Loading from "../components/Loading";
+import AdminRoutes from "./AdminRoutes";
 
 const E404 = lazy(() => import('./E404'))
 
@@ -33,6 +34,9 @@ export default () => {
     return (
         <Suspense fallback={<Loading/>}>
             <Switch>
+                    <Route path="/admin">
+                        <AdminRoutes/>
+                    </Route>
                     {
                         only_logged_in.map(({path, Component},i) => (
                                 <Route key={i} exact path={path} component={props => {
