@@ -124,51 +124,51 @@ class SingleEmployee extends React.Component {
         if (loading) return "Loading..."
         return (
             <div className="card">
-            <div className="card-body">
-            <h4 className="card-title">
-                Employee details  &nbsp;&nbsp;&nbsp;
-                {
-                    this.state.disabled &&  
-                        <React.Fragment>
-                            <button 
-                                onClick={() => {
-                                    this.setState({ disabled: false })
-                                }}
-                                type="button" 
-                                className="btn btn-primary mr-2"
-                            >Edit</button>
-                            <button 
-                                onClick={this.deleteEmployee}
-                                type="button" 
-                                className="btn btn-danger mr-2"
-                            >Delete</button>
-                        </React.Fragment>
+                <div className="card-body">
+                <h4 className="card-title">
+                    Employee details  &nbsp;&nbsp;&nbsp;
+                    {
+                        this.state.disabled &&  
+                            <React.Fragment>
+                                <button 
+                                    onClick={() => {
+                                        this.setState({ disabled: false })
+                                    }}
+                                    type="button" 
+                                    className="btn btn-primary mr-2"
+                                >Edit</button>
+                                <button 
+                                    onClick={this.deleteEmployee}
+                                    type="button" 
+                                    className="btn btn-danger mr-2"
+                                >Delete</button>
+                            </React.Fragment>
 
+                    }
+                </h4>
+                <p className="card-description">
+                </p>
+                {
+                    employee &&
+                    <EmployeeForm
+                        onSubmit={this.onSubmit}
+                        errors={this.getErrors()}
+                        getFeedback={this.getFeedback}
+                        getValue={this.getValue}
+                        onChange={this.onChange}
+                        disabled={this.state.disabled}
+                        onCancel={this.clearState}
+                        hidePassword={true}
+                        showLoading={this.state.update_loading}
+                        hideButtons={this.state.update_loading}
+                    />
                 }
-            </h4>
-            <p className="card-description">
-            </p>
-            {
-                employee &&
-                <EmployeeForm
-                    onSubmit={this.onSubmit}
-                    errors={this.getErrors()}
-                    getFeedback={this.getFeedback}
-                    getValue={this.getValue}
-                    onChange={this.onChange}
-                    disabled={this.state.disabled}
-                    onCancel={this.clearState}
-                    hidePassword={true}
-                    showLoading={this.state.update_loading}
-                    hideButtons={this.state.update_loading}
-                />
-            }
-            {
-                !employee && <Loading/>
-            }
+                {
+                    !employee && <Loading/>
+                }
+                </div>
             </div>
-        </div>
-)
+        )
     }
 }
 

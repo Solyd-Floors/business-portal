@@ -11,6 +11,7 @@ import ShipToAddressForm from "../../components/ShipToAddressForm";
 import Loading from "../../components/Loading";
 
 import * as yup from "yup";
+import axios from "axios";
 
 const updateShipToAddressSchema = {
     address: yup.string().required()

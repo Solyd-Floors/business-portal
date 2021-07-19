@@ -30,7 +30,7 @@ const authReducer = (state = defaultState, action) => {
             return { ...state, postAuth: { loading: false, data: action.payload }, business: action.payload.data.business, loggedIn: true }
         case "POST_AUTH_FAILED":
             return { ...state, postAuth: { loading: false, error: action.error } }
-        case "POST_businessS_SUCCESS":
+        case "POST_BUSINESS_SUCCESS":
             localStorage.setItem("solyd_floors_business:token", action.payload.data.token)
             return { ...state, business: action.payload.data.business, loggedIn: true }
         case "LOGOUT":

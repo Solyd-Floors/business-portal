@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store";
 import "./index.css"
+
 function float2int (value) {
   console.log({a:value , b: value | 0})
   return value | 0;
