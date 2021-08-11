@@ -22,6 +22,8 @@ const authReducer = (state = defaultState, action) => {
             }
             return { ...state, getAuth: { loading: false, data: action.payload }, business: action.payload.data.business, loggedIn: !action.payload.data.business.isGuest }
         case "GET_AUTH_FAILED":
+            localStorage.removeItem("solyd_floors:token")
+            localStorage.removeItem("solyd_floors:guest_token")
             return { ...state, getAuth: { loading: false, error: action.error } }
         case "POST_AUTH_REQUEST": 
             return { ...state, postAuth: { loading: true } }
